@@ -78,7 +78,7 @@ function Navbar() {
               className="text-white font-medium cursor-pointer flex items-center gap-2"
               onClick={() => navigate("/profile")}
             >
-              <p className="p-[10px] rounded-full bg-blue-700">
+              <p className="p-[10px] rounded-full ">
                 {user && user.photo ? (
                   <img
                     src={`https://assets.fastdonate.su${user.photo}`}
