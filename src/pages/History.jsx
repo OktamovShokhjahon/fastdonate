@@ -54,8 +54,8 @@ const History = () => {
 
   return userData ? (
     <div className="min-h-screen flex flex-col bg-gray-900">
-      <div className="flex-grow flex">
-        <div className="w-64 bg-gray-800 p-6 flex flex-col justify-between">
+      <div className="flex-grow flex flex-col md:flex-row">
+        <div className="w-full md:w-64 bg-gray-800 p-6 flex flex-col justify-between">
           <div>
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl">
@@ -110,7 +110,7 @@ const History = () => {
           </button>
         </div>
 
-        <div className="flex-grow px-6">
+        <div className="flex-grow px-6 mt-6 md:mt-0">
           <div className="bg-gray-800 p-6 rounded-lg">
             <h2 className="text-xl font-semibold text-white mb-4">
               {t("purchase_history")}

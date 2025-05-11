@@ -24,7 +24,7 @@ export default function DiamondPackages() {
     Array(additionalPackages.length).fill(0)
   );
   const [weeklyPassQuantityArray, setWeeklyPassQuantityArray] = useState([0]);
-  const [userBalance, setUserBalance] = useState();
+  const [userBalance, setUserBalance] = useState(undefined);
 
   const { t } = useTranslation();
 
@@ -99,7 +99,13 @@ export default function DiamondPackages() {
   async function handleBuy() {
     const token = Cookies.get("token");
 
-    if (token && account !== t("user_not_found") && username && serverId) {
+    if (
+      token &&
+      account !== t("user_not_found") &&
+      username &&
+      serverId &&
+      doesAgree
+    ) {
       const productsArray = Object.entries(choosedProducts).map(
         ([key, value]) => ({
           id: Number(key),
@@ -234,6 +240,7 @@ export default function DiamondPackages() {
 
                               setStandardQuantities(q);
                               handleChoose(pkg.id, "plus");
+                              setTotal((prev) => prev + pkg.price);
                             }}
                           >
                             {t("select")}
@@ -342,6 +349,7 @@ export default function DiamondPackages() {
                               q[i] = 1;
                               setAdditionalQuantities(q);
                               handleChoose(pkg.id, "plus");
+                              setTotal((prev) => prev + pkg.price);
                             }}
                           >
                             {t("select")}
@@ -424,6 +432,9 @@ export default function DiamondPackages() {
                         const q = [...weeklyPassQuantityArray];
                         q[0] = 1;
                         setWeeklyPassQuantityArray(q);
+
+                        handleChoose(weekly.id, "plus");
+                        setTotal((prev) => prev + weekly.price);
                       }}
                     >
                       {t("select")}
@@ -440,8 +451,8 @@ export default function DiamondPackages() {
                             q[0] = 0;
                           }
                           setWeeklyPassQuantityArray(q);
-                          handleChoose(pkg.id, "minus");
-                          setTotal((prev) => prev - pkg.price);
+                          handleChoose(weekly.id, "minus");
+                          setTotal((prev) => prev - weekly.price);
                         }}
                       >
                         −
@@ -455,8 +466,9 @@ export default function DiamondPackages() {
                           const q = [...weeklyPassQuantityArray];
                           q[0]++;
                           setWeeklyPassQuantityArray(q);
-                          handleChoose(pkg.id, "plus");
-                          setTotal((prev) => prev + pkg.price);
+                          handleChoose(weekly.id, "plus");
+                          console.log(weekly.price);
+                          setTotal((prev) => prev + weekly.price);
                         }}
                       >
                         +
@@ -512,6 +524,7 @@ export default function DiamondPackages() {
                     type="checkbox"
                     name="i_agree"
                     className="mt-1 h-5 w-5 rounded-md border border-gray-600 bg-gray-800 checked:bg-blue-600 checked:border-transparent focus:ring-0 hover:border-blue-500 transition"
+                    onClick={() => setDoesAgree(!doesAgree)}
                   />
                   <span>{t("region_restrictions")}</span>
                 </label>
@@ -540,15 +553,26 @@ export default function DiamondPackages() {
                       className="inline ml-[5px]"
                     />
                   </span>
-                  <a
-                    onClick={() => handleBuy()}
-                    href="https://t.me/FastDonate_Admin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-lg transition"
-                  >
-                    {t("buy_now")}
-                  </a>
+                  {userBalance !== undefined && (
+                    <a
+                      onClick={() => handleBuy()}
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-lg transition"
+                    >
+                      {t("buy_now")}
+                    </a>
+                  )}
+
+                  {userBalance === undefined && (
+                    <a
+                      onClick={() => handleBuy()}
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-lg transition"
+                      href="/login"
+                    >
+                      {t("login")}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

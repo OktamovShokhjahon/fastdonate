@@ -168,9 +168,14 @@ function Navbar() {
                 onClick={() => navigate("/profile")}
               >
                 <p className="p-[10px] rounded-full bg-blue-700">
-                  {user && user.photo
-                    ? `https://assets.fastdonate.uz/${user.photo}`
-                    : "👤"}
+                  {user && user.photo ? (
+                    <img
+                      src={`https://assets.fastdonate.uz/${user.photo}`}
+                      alt=""
+                    />
+                  ) : (
+                    "👤"
+                  )}
                 </p>
                 <p>
                   {user && user.username}

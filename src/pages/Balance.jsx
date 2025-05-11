@@ -62,8 +62,8 @@ const Balance = () => {
 
   return userData ? (
     <div className="min-h-screen flex flex-col bg-gray-900">
-      <div className="flex-grow flex">
-        <div className="w-64 bg-gray-800 p-6 flex flex-col justify-between">
+      <div className="flex-grow flex flex-col md:flex-row">
+        <div className="w-full md:w-64 bg-gray-800 p-6 flex flex-col justify-between">
           <div>
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl">
@@ -118,7 +118,7 @@ const Balance = () => {
           </button>
         </div>
 
-        <div className="flex-grow px-6">
+        <div className="flex-grow px-6 mt-6 md:mt-0">
           <div className="bg-gray-800 p-6 rounded-lg flex flex-col gap-[15px]">
             <h1>{t("balance")}</h1>
             {prices &&
@@ -128,7 +128,7 @@ const Balance = () => {
                     key={idx}
                     href="https://t.me/FastDonate_Admin"
                     target="_blank"
-                    className="rounded-[15px] transition hover:text-black hover:bg-white items-center cursor-pointer  flex gap-[10px]"
+                    className="rounded-[15px] transition hover:text-black hover:bg-white items-center cursor-pointer flex gap-[10px]"
                     style={{
                       border: "1px solid white",
                       padding: "10px",
@@ -143,7 +143,7 @@ const Balance = () => {
                   </a>
                 );
               })}
-            <p className="rounded-[15px] transition  items-center cursor-pointer  flex gap-[10px]">
+            <p className="rounded-[15px] transition items-center cursor-pointer flex gap-[10px]">
               {t("balance")}:{" "}
               <img src="/coin.png" width={30} height={30} alt="" />{" "}
               {userData.balance}
