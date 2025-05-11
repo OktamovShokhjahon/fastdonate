@@ -23,6 +23,7 @@
   "username_error": "Username faqatgina harf va raqamlardan iborat bo'lishi kerak.",
   "password_error": "Parol 8 ta belgidan kam bo'lmasligi kerak.",
   "username_or_email_exists": "Username yoki email allaqachon mavjud",
+  "registration_error": "Bunday username yoki email allaqachon mavjud",
   "purchase_diamonds": "Olmos sotib olish",
   "server_id": "Server ID",
   "enter_your_server_id": "Server ID ni kiriting",

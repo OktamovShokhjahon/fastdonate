@@ -23,6 +23,7 @@
   "username_error": "Username must only contain letters and numbers.",
   "password_error": "Password must be at least 8 characters long.",
   "username_or_email_exists": "Username or email already exists",
+  "registration_error": "This email or username already exists.",
   "purchase_diamonds": "Purchase Diamonds",
   "server_id": "Server ID",
   "enter_your_server_id": "Enter your Server ID",
