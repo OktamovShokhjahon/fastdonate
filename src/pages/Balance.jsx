@@ -121,7 +121,17 @@ const Balance = () => {
           <div>
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl">
-                <span>👤</span>
+                <span>
+                  {userData && userData.photo ? (
+                    <img
+                      src={`https://assets.fastdonate.su${userData.photo}`}
+                      className="rounded-full w-[50px] h-[50px]"
+                      alt=""
+                    />
+                  ) : (
+                    ""
+                  )}
+                </span>
               </div>
               <div className="ml-3">
                 <p className="text-white font-semibold">
@@ -148,7 +158,7 @@ const Balance = () => {
                 <li>
                   <Link
                     to="/balance"
-                    className="block py-2 px-4 text-gray-400 hover:bg-gray-700 rounded mb-2"
+                    className="block py-2 px-4 bg-blue-500 text-white rounded mb-2"
                   >
                     {t("balance")}
                   </Link>
@@ -156,7 +166,7 @@ const Balance = () => {
                 <li>
                   <Link
                     to="/history"
-                    className="block py-2 px-4 bg-blue-500 text-white rounded mb-2"
+                    className="block py-2 px-4 text-gray-400 hover:bg-gray-700 rounded mb-2"
                   >
                     {t("purchase_history")}
                   </Link>

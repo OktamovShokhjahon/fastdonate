@@ -59,7 +59,17 @@ const History = () => {
           <div>
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl">
-                <span>👤</span>
+                <span>
+                  {userData && userData.photo ? (
+                    <img
+                      src={`https://assets.fastdonate.su${userData.photo}`}
+                      className="rounded-full w-[50px] h-[50px]"
+                      alt=""
+                    />
+                  ) : (
+                    ""
+                  )}
+                </span>
               </div>
               <div className="ml-3">
                 <p className="text-white font-semibold">
