@@ -22,7 +22,7 @@ const History = () => {
     async function getData() {
       if (token1) {
         await axios
-          .get("/auth/me", {
+          .get(`${BASE_URL}/auth/me`, {
             headers: {
               Authorization: `${token1}`,
             },

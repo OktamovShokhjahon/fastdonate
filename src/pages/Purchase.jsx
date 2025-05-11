@@ -4,6 +4,7 @@ import BASE_URL from "../config.js";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
+import BASE_API from "../config.js";
 
 export default function DiamondPackages() {
   const [standardPackages, setStandardPackages] = useState([]);
@@ -58,7 +59,7 @@ export default function DiamondPackages() {
 
       if (token) {
         await axios
-          .get("/auth/me", {
+          .get(`${BASE_API}/auth/me`, {
             headers: {
               Authorization: `${token}`,
             },
@@ -209,7 +210,13 @@ export default function DiamondPackages() {
                       </div>
                       <div className="flex items-center justify-between mt-3">
                         <div className="text-yellow-300 font-semibold">
-                          {pkg.price.toLocaleString()} 🪙
+                          {pkg.price.toLocaleString()}{" "}
+                          <img
+                            src="/coin.png"
+                            width={20}
+                            alt=""
+                            className="inline ml-[5px]"
+                          />
                         </div>
                         {standardQuantities[i] === 0 ? (
                           <button
@@ -312,7 +319,13 @@ export default function DiamondPackages() {
                       </div>
                       <div className="flex items-center justify-between mt-3">
                         <div className="text-yellow-300 font-semibold">
-                          {pkg.price.toLocaleString()} 🪙
+                          {pkg.price.toLocaleString()}{" "}
+                          <img
+                            src="/coin.png"
+                            width={20}
+                            alt=""
+                            className="inline ml-[5px]"
+                          />
                         </div>
                         {additionalQuantities[i] === 0 ? (
                           <button
@@ -389,7 +402,13 @@ export default function DiamondPackages() {
                 </div>
                 <div className="flex items-center justify-between mt-3">
                   <div className="text-yellow-300 font-semibold">
-                    {weekly.price} 🪙
+                    {weekly.price}{" "}
+                    <img
+                      src="/coin.png"
+                      width={20}
+                      alt=""
+                      className="inline ml-[5px]"
+                    />
                   </div>
                   {weeklyPassQuantityArray[0] === 0 ? (
                     <button
@@ -457,8 +476,9 @@ export default function DiamondPackages() {
                     className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:outline-none"
                     onChange={(e) => {
                       setUsername(e.target.value);
-                      handleChange(e.target.value, serverId);
+                      // handleChange(e.target.value, serverId);
                     }}
+                    onBlur={() => handleChange(username, serverId)}
                   />
                 </div>
                 <div>
@@ -471,8 +491,9 @@ export default function DiamondPackages() {
                     className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:outline-none"
                     onChange={(e) => {
                       setServerId(e.target.value);
-                      handleChange(username, e.target.value);
+                      // handleChange(username, e.target.value);
                     }}
+                    onBlur={() => handleChange(username, serverId)}
                   />
                 </div>
 
@@ -485,13 +506,25 @@ export default function DiamondPackages() {
                 <div>
                   <span className="text-sm">{t("balance")}: </span>
                   <span className="text-yellow-300 font-semibold">
-                    {userBalance && userBalance} 🪙
+                    {userBalance && userBalance}
+                    <img
+                      src="/coin.png"
+                      width={20}
+                      alt=""
+                      className="inline ml-[5px]"
+                    />
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm">{t("total")}: </span>
                   <span className="text-yellow-300 font-semibold">
-                    {total} 🪙
+                    {total}{" "}
+                    <img
+                      src="/coin.png"
+                      width={20}
+                      alt=""
+                      className="inline ml-[5px]"
+                    />
                   </span>
                   <a
                     onClick={() => handleBuy()}
@@ -507,9 +540,6 @@ export default function DiamondPackages() {
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <h1>{t("purchase")}</h1>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next"; // Import useTranslation
+import BASE_URL from "../config.js";
 
 function Navbar() {
   const { t, i18n } = useTranslation(); // Initialize translation hook
@@ -21,7 +22,7 @@ function Navbar() {
     async function getData() {
       if (token1) {
         await axios
-          .get("/auth/me", {
+          .get(`${BASE_URL}/auth/me`, {
             headers: {
               Authorization: `${token1}`,
             },

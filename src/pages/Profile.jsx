@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 import { useTranslation } from "react-i18next";
+import BASE_API from "../config";
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -21,7 +22,7 @@ const Profile = () => {
     async function getData() {
       if (token1) {
         await axios
-          .get("/auth/me", {
+          .get(`${BASE_API}/auth/me`, {
             headers: {
               Authorization: `${token1}`,
             },
