@@ -185,7 +185,7 @@ export default function DiamondPackages() {
             </li>
             <li className="flex items-center">
               <span className="text-green-400 mr-2">✓</span>
-              {t("fast_delivery")}
+              {t("fast_delivery") + " (❌ 🇷🇺)"}
             </li>
           </ul>
         </div>
