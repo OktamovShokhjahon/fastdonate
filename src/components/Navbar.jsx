@@ -167,11 +167,14 @@ function Navbar() {
                 className="text-white font-medium cursor-pointer flex  items-center gap-2"
                 onClick={() => navigate("/profile")}
               >
-                <p className="p-[10px] rounded-full bg-blue-700">
+                <p className="min-h-[50px]">
                   {user && user.photo ? (
                     <img
-                      src={`https://assets.fastdonate.uz/${user.photo}`}
+                      src={`https://assets.fastdonate.su${user.photo}`}
                       alt=""
+                      // width={50}
+                      // height={50}
+                      className="rounded-full w-[50px] h-[50px]"
                     />
                   ) : (
                     "👤"
