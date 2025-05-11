@@ -75,10 +75,22 @@ function Navbar() {
 
           {token ? (
             <div
-              className="text-blue-700 font-medium cursor-pointer"
+              className="text-white font-medium cursor-pointer flex items-center gap-2"
               onClick={() => navigate("/profile")}
             >
-              {user && user.username}
+              <p className="p-[10px] rounded-full bg-blue-700">
+                {user && user.photo
+                  ? `https://assets.fastdonate.uz/${user.photo}`
+                  : "👤"}
+              </p>
+
+              <p>
+                {user && user.username}
+                <span className="flex items-center gap-1">
+                  {user && user.balance}
+                  <img src="/coin.png" width={20} alt="" />
+                </span>
+              </p>
             </div>
           ) : (
             <div className="flex gap-4">
@@ -126,6 +138,65 @@ function Navbar() {
               )}
             </svg>
           </button>
+        </div>
+      </div>
+
+      <div
+        className={`md:hidden ${
+          isMenuOpen ? "block" : "hidden"
+        } bg-gray-800 absolute top-full left-0 w-full z-40`}
+      >
+        <div className="mx-[20px]">
+          <div className="flex justify-between items-center gap-4 py-4">
+            <div className="flex items-center gap-3">
+              {["en", "ru", "uz"].map((lang) => (
+                <p
+                  key={lang}
+                  className={`${
+                    lang === i18n.language &&
+                    "bg-blue-700 px-[15px] py-[10px] rounded-[8px]"
+                  } transition cursor-pointer text-white`}
+                  onClick={() => changeLanguage(lang)}
+                >
+                  {lang.toUpperCase()}
+                </p>
+              ))}
+            </div>
+            {token ? (
+              <div
+                className="text-white font-medium cursor-pointer flex  items-center gap-2"
+                onClick={() => navigate("/profile")}
+              >
+                <p className="p-[10px] rounded-full bg-blue-700">
+                  {user && user.photo
+                    ? `https://assets.fastdonate.uz/${user.photo}`
+                    : "👤"}
+                </p>
+                <p>
+                  {user && user.username}
+                  <span className="flex items-center gap-1">
+                    {user && user.balance}
+                    <img src="/coin.png" width={20} alt="" />
+                  </span>
+                </p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4">
+                <Link
+                  to="/login"
+                  className="text-white bg-blue-700 hover:bg-blue-500 transition px-6 py-2 rounded text-center"
+                >
+                  {t("login")}
+                </Link>
+                <Link
+                  to="/register"
+                  className="text-white bg-blue-700 hover:bg-blue-500 transition px-6 py-2 rounded text-center"
+                >
+                  {t("register")}
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>

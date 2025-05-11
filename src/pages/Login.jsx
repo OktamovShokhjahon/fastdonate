@@ -21,8 +21,12 @@ const Login = () => {
         password,
       })
       .then((response) => {
-        Cookies.set("token", response.data.token);
-        location.href = "/";
+        if (response.data.token) {
+          Cookies.set("token", response.data.token);
+          location.href = "/";
+        } else {
+          toast.error("Parol va username ni tekshirib yana urinib ko'ring");
+        }
       })
       .catch((err) => {
         toast.error("Parol va username ni tekshirib yana urinib ko'ring");

@@ -40,6 +40,8 @@ const Profile = () => {
     getData();
   }, []);
 
+  console.log(userData);
+
   return (
     <>
       {userData ? (
@@ -106,21 +108,16 @@ const Profile = () => {
                 <div className="text-gray-400 space-y-4">
                   <div>
                     <p className="text-sm">{t("username")}</p>
-                    <p className="text-white">
-                      {userData.username || t("default_username")}
-                    </p>
+                    <p className="text-white">{userData.username}</p>
                   </div>
                   <div>
                     <p className="text-sm">{t("email")}</p>
-                    <p className="text-white">
-                      {userData.email || t("default_email")}
-                    </p>
+                    <p className="text-white">{userData.email}</p>
                   </div>
                   <div>
                     <p className="text-sm">{t("balance")}</p>
                     <p className="text-yellow-400 flex items-center">
-                      {userData.balance || "12000"}{" "}
-                      <span className="ml-1">💰</span>
+                      {userData.balance} <span className="ml-1">💰</span>
                     </p>
                   </div>
                 </div>

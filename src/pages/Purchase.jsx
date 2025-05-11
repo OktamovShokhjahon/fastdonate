@@ -15,6 +15,7 @@ export default function DiamondPackages() {
   const [account, setAccount] = useState(null);
   const [choosedProducts, setChoosedProducts] = useState({});
   const [total, setTotal] = useState(0);
+  const [doesAgree, setDoesAgree] = useState(false);
 
   const [standardQuantities, setStandardQuantities] = useState(
     Array(standardPackages.length).fill(0)
@@ -106,19 +107,25 @@ export default function DiamondPackages() {
         })
       );
 
-      await axios.post(
-        `${BASE_URL}/merchant/buy`,
-        {
-          products: productsArray,
-          user_id: Number(username),
-          server_id: Number(serverId),
-        },
-        {
-          headers: {
-            Authorization: token,
+      await axios
+        .post(
+          `${BASE_URL}/merchant/buy`,
+          {
+            products: productsArray,
+            user_id: Number(username),
+            server_id: Number(serverId),
           },
-        }
-      );
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data.message) {
+            toast(res.data.message);
+          }
+        });
     } else {
       toast.error(t("fill_profile_first"));
     }
@@ -500,7 +507,14 @@ export default function DiamondPackages() {
                 <p>{account}</p>
               </div>
               <p className="text-sm text-gray-300 mb-4">
-                {t("region_restrictions")}
+                <label className="flex items-start space-x-2 cursor-pointer text-sm text-white">
+                  <input
+                    type="checkbox"
+                    name="i_agree"
+                    className="mt-1 h-5 w-5 rounded-md border border-gray-600 bg-gray-800 checked:bg-blue-600 checked:border-transparent focus:ring-0 hover:border-blue-500 transition"
+                  />
+                  <span>{t("region_restrictions")}</span>
+                </label>
               </p>
               <div className="flex justify-between items-center">
                 <div>
