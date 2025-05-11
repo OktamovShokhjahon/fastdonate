@@ -63,7 +63,7 @@ const Balance = () => {
   return userData ? (
     <div className="min-h-screen flex flex-col bg-gray-900">
       <div className="flex-grow flex flex-col md:flex-row">
-        <div className="w-full md:w-64 bg-gray-800 p-6 flex flex-col justify-between">
+        {/* <div className="w-full md:w-64 bg-gray-800 p-6 flex flex-col justify-between">
           <div>
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl">
@@ -115,6 +115,60 @@ const Balance = () => {
             className="text-red-500 hover:text-red-400 transition-colors flex items-center"
           >
             <span className="mr-2">⏎</span> Chiqish
+          </button>
+        </div> */}
+        <div className="w-full md:w-64 bg-gray-800 p-6 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center mb-6">
+              <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl">
+                <span>👤</span>
+              </div>
+              <div className="ml-3">
+                <p className="text-white font-semibold">
+                  {userData.username || t("default_username")}
+                </p>
+                <p className="text-gray-400 text-sm">
+                  {userData.email || t("default_email")}
+                </p>
+                <p className="text-yellow-400 text-sm flex items-center">
+                  {userData.balance} <span className="ml-1">💰</span>
+                </p>
+              </div>
+            </div>
+            <nav>
+              <ul>
+                <li>
+                  <Link
+                    to="/profile"
+                    className="block py-2 px-4 text-gray-400 hover:bg-gray-700 rounded mb-2"
+                  >
+                    {t("personal_info")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/balance"
+                    className="block py-2 px-4 text-gray-400 hover:bg-gray-700 rounded mb-2"
+                  >
+                    {t("balance")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/history"
+                    className="block py-2 px-4 bg-blue-500 text-white rounded mb-2"
+                  >
+                    {t("purchase_history")}
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="text-red-500 hover:text-red-400 transition-colors flex items-center"
+          >
+            <span className="mr-2">⏎</span> {t("logout")}
           </button>
         </div>
 
