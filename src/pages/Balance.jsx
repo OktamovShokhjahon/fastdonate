@@ -207,7 +207,14 @@ const Balance = () => {
             </div>
             <p className="rounded-[15px] transition items-center cursor-pointer flex gap-[10px]">
               {t("balance")}: {userData.balance} uzs
-            </p>{" "}
+            </p>
+            <a
+              href="https://t.me/FastDonate_Admin"
+              target="_blank"
+              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded text-center"
+            >
+              {t("buy_now")}
+            </a>
           </div>
         </div>
       </div>
