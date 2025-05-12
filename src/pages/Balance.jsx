@@ -185,25 +185,26 @@ const Balance = () => {
         <div className="flex-grow px-6 mt-6 md:mt-0">
           <div className="bg-gray-800 p-6 rounded-lg flex flex-col gap-[15px]">
             <h1>{t("balance")}</h1>
-            {prices &&
-              Object.keys(prices).map((price, idx) => {
-                return (
-                  <a
-                    key={idx}
-                    href="https://t.me/FastDonate_Admin"
-                    target="_blank"
-                    className="rounded-[15px] transition hover:text-black hover:bg-white items-center cursor-pointer flex gap-[10px]"
-                    style={{
-                      border: "1px solid white",
-                      padding: "10px",
-                    }}
-                  >
-                    <p className="flex gap-[5px] items-center">{price} uzs</p>{" "}
-                    <span>=</span>
-                    {prices[price]}
-                  </a>
-                );
-              })}
+            <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-2">
+              {prices &&
+                Object.keys(prices).map((price, idx) => {
+                  return (
+                    <a
+                      key={idx}
+                      href="https://t.me/FastDonate_Admin"
+                      target="_blank"
+                      className="rounded-[5px] transition items-center cursor-pointer flex gap-[10px] relative bg-[#111827] px-[10px] py-[40px]"
+                    >
+                      <p className="flex gap-[5px] items-center absolute left-0 top-0 pl-[10px] pt-[10px]">
+                        {price}
+                      </p>{" "}
+                      <p className="text-yellow-500 absolute bottom-[10px] right-[10px]">
+                        {prices[price]} uzs
+                      </p>
+                    </a>
+                  );
+                })}
+            </div>
             <p className="rounded-[15px] transition items-center cursor-pointer flex gap-[10px]">
               {t("balance")}: {userData.balance} uzs
             </p>{" "}
