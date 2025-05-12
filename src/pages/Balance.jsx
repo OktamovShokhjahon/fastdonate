@@ -77,7 +77,7 @@ const Balance = () => {
                   {userData.email || "habibullayevferuz2001@gmail.com"}
                 </p>
                 <p className="text-yellow-400 text-sm flex items-center">
-                  {userData.balance} <span className="ml-1">💰</span>
+                  {userData.balance} <span className="ml-1">uzs</span>
                 </p>
               </div>
             </div>
@@ -141,7 +141,7 @@ const Balance = () => {
                   {userData.email || t("default_email")}
                 </p>
                 <p className="text-yellow-400 text-sm flex items-center">
-                  {userData.balance} <span className="ml-1">💰</span>
+                  {userData.balance} <span className="ml-1">uzs</span>
                 </p>
               </div>
             </div>
@@ -198,19 +198,14 @@ const Balance = () => {
                       padding: "10px",
                     }}
                   >
-                    <p className="flex gap-[5px] items-center">
-                      <img src="/coin.png" width={30} height={30} alt="" />{" "}
-                      {price}
-                    </p>{" "}
+                    <p className="flex gap-[5px] items-center">{price} uzs</p>{" "}
                     <span>=</span>
                     {prices[price]}
                   </a>
                 );
               })}
             <p className="rounded-[15px] transition items-center cursor-pointer flex gap-[10px]">
-              {t("balance")}:{" "}
-              <img src="/coin.png" width={30} height={30} alt="" />{" "}
-              {userData.balance}
+              {t("balance")}: {userData.balance} uzs
             </p>{" "}
           </div>
         </div>

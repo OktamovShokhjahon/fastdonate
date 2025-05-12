@@ -94,8 +94,7 @@ function Navbar() {
               <p>
                 {user && user.username}
                 <span className="flex items-center gap-1">
-                  {user && user.balance}
-                  <img src="/coin.png" width={20} alt="" />
+                  {user && user.balance} uzs
                 </span>
               </p>
             </div>
@@ -191,7 +190,7 @@ function Navbar() {
                   {user && user.username}
                   <span className="flex items-center gap-1">
                     {user && user.balance}
-                    <img src="/coin.png" width={20} alt="" />
+                    uzs
                   </span>
                 </p>
               </div>

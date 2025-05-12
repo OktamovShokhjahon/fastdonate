@@ -49,7 +49,7 @@ function FocusOnSelect() {
           return (
             <div
               key={index}
-              className="relative flex justify-center items-center h-[60vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh]"
+              className="relative flex justify-center items-center h-[30vh] sm:h-[30vh] md:h-[60vh] lg:h-[70vh]"
             >
               <img
                 src="/mobile-legends-carousel.jpg"

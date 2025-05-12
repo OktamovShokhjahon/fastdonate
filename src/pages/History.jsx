@@ -79,7 +79,7 @@ const History = () => {
                   {userData.email || t("default_email")}
                 </p>
                 <p className="text-yellow-400 text-sm flex items-center">
-                  {userData.balance} <span className="ml-1">💰</span>
+                  {userData.balance} <span className="ml-1">uzs</span>
                 </p>
               </div>
             </div>

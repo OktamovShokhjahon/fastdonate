@@ -69,7 +69,7 @@ const Profile = () => {
                     </p>
                     <p className="text-gray-400 text-sm">{userData.email}</p>
                     <p className="text-yellow-400 text-sm flex items-center">
-                      {userData.balance} <span className="ml-1">💰</span>
+                      {userData.balance} <span className="ml-1">uzs</span>
                     </p>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ const Profile = () => {
                   <div>
                     <p className="text-sm">{t("balance")}</p>
                     <p className="text-yellow-400 flex items-center">
-                      {userData.balance} <span className="ml-1">💰</span>
+                      {userData.balance} <span className="ml-1">uzs</span>
                     </p>
                   </div>
                 </div>

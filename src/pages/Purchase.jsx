@@ -223,13 +223,7 @@ export default function DiamondPackages() {
                       </div>
                       <div className="flex items-center justify-between mt-3">
                         <div className="text-yellow-300 font-semibold">
-                          {pkg.price.toLocaleString()}{" "}
-                          <img
-                            src="/coin.png"
-                            width={20}
-                            alt=""
-                            className="inline ml-[5px]"
-                          />
+                          {pkg.price.toLocaleString()} uzs
                         </div>
                         {standardQuantities[i] === 0 ? (
                           <button
@@ -333,13 +327,7 @@ export default function DiamondPackages() {
                       </div>
                       <div className="flex items-center justify-between mt-3">
                         <div className="text-yellow-300 font-semibold">
-                          {pkg.price.toLocaleString()}{" "}
-                          <img
-                            src="/coin.png"
-                            width={20}
-                            alt=""
-                            className="inline ml-[5px]"
-                          />
+                          {pkg.price.toLocaleString()} uzs
                         </div>
                         {additionalQuantities[i] === 0 ? (
                           <button
@@ -417,13 +405,7 @@ export default function DiamondPackages() {
                 </div>
                 <div className="flex items-center justify-between mt-3">
                   <div className="text-yellow-300 font-semibold">
-                    {weekly.price}{" "}
-                    <img
-                      src="/coin.png"
-                      width={20}
-                      alt=""
-                      className="inline ml-[5px]"
-                    />
+                    {weekly.price} uzs
                   </div>
                   {weeklyPassQuantityArray[0] === 0 ? (
                     <button
@@ -534,24 +516,13 @@ export default function DiamondPackages() {
                   <span className="text-sm">{t("balance")}: </span>
                   <span className="text-yellow-300 font-semibold">
                     {userBalance && userBalance}
-                    <img
-                      src="/coin.png"
-                      width={20}
-                      alt=""
-                      className="inline ml-[5px]"
-                    />
+                    uzs
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm">{t("total")}: </span>
                   <span className="text-yellow-300 font-semibold">
-                    {total}{" "}
-                    <img
-                      src="/coin.png"
-                      width={20}
-                      alt=""
-                      className="inline ml-[5px]"
-                    />
+                    {total} uzs
                   </span>
                   {userBalance !== undefined && (
                     <a
