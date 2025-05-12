@@ -184,8 +184,8 @@ const Balance = () => {
 
         <div className="flex-grow px-6 mt-6 md:mt-0">
           <div className="bg-gray-800 p-6 rounded-lg flex flex-col gap-[15px]">
-            <h1>{t("balance")}</h1>
-            <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-2">
+            {/* <h1>{t("balance")}</h1> */}
+            {/* <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-2">
               {prices &&
                 Object.keys(prices).map((price, idx) => {
                   return (
@@ -204,17 +204,19 @@ const Balance = () => {
                     </a>
                   );
                 })}
-            </div>
+            </div> */}
             <p className="rounded-[15px] transition items-center cursor-pointer flex gap-[10px]">
               {t("balance")}: {userData.balance} uzs
             </p>
-            <a
-              href="https://t.me/FastDonate_Admin"
-              target="_blank"
-              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded text-center"
-            >
-              {t("buy_now")}
-            </a>
+            <div>
+              <a
+                href="https://t.me/FastDonate_Admin"
+                target="_blank"
+                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded text-center"
+              >
+                {t("buy_now")}
+              </a>
+            </div>
           </div>
         </div>
       </div>
