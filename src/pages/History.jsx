@@ -75,9 +75,9 @@ const History = () => {
                 <p className="text-white font-semibold">
                   {userData.username || t("default_username")}
                 </p>
-                <p className="text-gray-400 text-sm">
+                {/* <p className="text-gray-400 text-sm">
                   {userData.email || t("default_email")}
-                </p>
+                </p> */}
                 <p className="text-yellow-400 text-sm flex items-center">
                   {userData.balance} <span className="ml-1">uzs</span>
                 </p>

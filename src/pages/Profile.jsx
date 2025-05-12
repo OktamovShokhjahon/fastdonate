@@ -67,7 +67,7 @@ const Profile = () => {
                     <p className="text-white font-semibold">
                       {userData.username}
                     </p>
-                    <p className="text-gray-400 text-sm">{userData.email}</p>
+                    {/* <p className="text-gray-400 text-sm">{userData.email}</p> */}
                     <p className="text-yellow-400 text-sm flex items-center">
                       {userData.balance} <span className="ml-1">uzs</span>
                     </p>
