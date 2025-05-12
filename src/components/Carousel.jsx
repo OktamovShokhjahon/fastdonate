@@ -49,12 +49,13 @@ function FocusOnSelect() {
           return (
             <div
               key={index}
-              className="relative flex justify-center items-center h-[30vh] sm:h-[30vh] md:h-[60vh] lg:h-[70vh]"
+              className="relative flex justify-center items-center"
+              style={{ width: "100%", height: "auto" }}
             >
               <img
                 src="/mobile-legends-carousel.jpg"
                 alt={t("carousel.title")}
-                className="absolute left-0 top-0 w-full h-full object-cover"
+                className="w-full h-auto object-contain"
               />
 
               <div className="absolute left-0 top-0 inset-0 bg-black bg-opacity-50 z-1"></div>
