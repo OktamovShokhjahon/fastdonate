@@ -128,17 +128,43 @@ export default function DiamondPackages() {
             },
           }
         )
-        .then((res) => {
+        .then(async (res) => {
           if (res.data.message) {
             if (res.data.message == "ok") {
               setChoosedProducts({});
               setServerId("");
               setUsername("");
               setInpErr("");
+              setAccount("");
+              setStandardQuantities(Array(standardPackages.length).fill(0));
+              setAdditionalQuantities(Array(additionalPackages.length).fill(0));
+              setWeeklyPassQuantityArray([0]);
               setInpMsg(t("order_accepted"));
+              setTotal(0);
+
+              const token = Cookies.get("token");
+
+              if (token) {
+                await axios
+                  .get(`${BASE_API}/auth/me`, {
+                    headers: {
+                      Authorization: `${token}`,
+                    },
+                  })
+                  .then((res) => {
+                    setUserBalance(res.data.balance);
+                  })
+                  .catch((err) => {
+                    setInpErr(t("error_fetching_user"));
+                  });
+              }
+
+              setTimeout(() => {
+                setInpMsg("");
+              }, 5000);
             } else {
+              setInpMsg(res.data.message);
             }
-            setInpMsg(res.data.message);
           }
         });
     } else {
@@ -484,6 +510,7 @@ export default function DiamondPackages() {
                     type="text"
                     placeholder={t("enter_your_username")}
                     className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:outline-none"
+                    value={username}
                     onChange={(e) => {
                       setUsername(e.target.value);
                     }}
@@ -498,6 +525,7 @@ export default function DiamondPackages() {
                     type="text"
                     placeholder={t("enter_your_server_id")}
                     className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:outline-none"
+                    value={serverId}
                     onChange={(e) => {
                       setServerId(e.target.value);
                     }}
