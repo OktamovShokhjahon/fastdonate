@@ -99,6 +99,14 @@ const Profile = () => {
                         {t("purchase_history")}
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        to="/profile-settings"
+                        className="block py-2 px-4 text-gray-400 hover:bg-gray-700 rounded mb-2"
+                      >
+                        {t("profile_settings")}
+                      </Link>
+                    </li>
                   </ul>
                 </nav>
               </div>

@@ -28,6 +28,8 @@
   "server_id": "ID сервера",
   "enter_your_server_id": "Введите ID сервера",
   "standard_packages": "Стандартные пакеты",
+  "change_profile_pic": "Сменить фотографию профиля",
+  "profile_settings": "Настройки профиля",
   "buy_now": "Пополнить счёт",
   "purchase_success": "Покупка успешно завершена!",
   "package_1": "Пакет 1",
@@ -76,5 +78,9 @@
   "status": "Статус",
   "not_completed": "Не завершено",
   "completed": "Завершено",
-  "user_id": "ID пользователя"
+  "user_id": "ID пользователя",
+  "error_updating_profile_pic": "Ошибка при обновлении фотографии профиля.",
+  "profile_pic_updated": "Фотография профиля успешно обновлена.",
+  "please_select_image": "Пожалуйста, выберите изображение.",
+  "update": "Обновить"
 }

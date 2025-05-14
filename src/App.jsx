@@ -19,6 +19,7 @@ import RootLayout from "./layouts/RootLayout";
 //css
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ProfileSettings from "./pages/ProfileSettings";
 
 function App() {
   const routes = createBrowserRouter([
@@ -54,6 +55,10 @@ function App() {
         {
           path: "history",
           element: <History />,
+        },
+        {
+          path: "profile-settings",
+          element: <ProfileSettings />,
         },
         // {
         //   path: "contact",

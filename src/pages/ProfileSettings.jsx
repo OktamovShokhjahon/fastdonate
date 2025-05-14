@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 import BASE_URL from "../config";
 import { useTranslation } from "react-i18next";
 
-const History = () => {
+const ProfileSettings = () => {
   const [userData, setUserData] = useState(null);
-  const [history, setHistory] = useState(null);
+  const [image, setImage] = useState(null);
   const { t } = useTranslation();
 
   const handleLogout = () => {
@@ -33,24 +33,45 @@ const History = () => {
           .catch((err) => {
             toast.error(t("error_fetching_user_data"));
           });
-
-        await axios
-          .get(`${BASE_URL}/profile/orders`, {
-            headers: {
-              Authorization: `${token1}`,
-            },
-          })
-          .then((res) => {
-            setHistory(res.data.orders);
-          })
-          .catch((err) => {
-            toast.error(t("error_fetching_orders"));
-          });
       }
     }
 
     getData();
-  }, []);
+  }, [t]);
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!image) {
+      toast.error(t("please_select_image"));
+      return;
+    }
+    const token1 = Cookies.get("token");
+    const formData = new FormData();
+    formData.append("photo", image);
+
+    try {
+      await axios.post(`${BASE_URL}/profile/update_photo`, formData, {
+        headers: {
+          Authorization: `${token1}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      toast.success(t("profile_pic_updated"));
+      setImage(null);
+      const res = await axios.get(`${BASE_URL}/auth/me`, {
+        headers: { Authorization: `${token1}` },
+      });
+      setUserData(res.data);
+    } catch (err) {
+      toast.error(t("error_updating_profile_pic"));
+    }
+  };
 
   return userData ? (
     <div className="min-h-screen flex flex-col bg-gray-900">
@@ -101,7 +122,7 @@ const History = () => {
                 <li>
                   <Link
                     to="/history"
-                    className="block py-2 px-4 bg-blue-500 text-white rounded mb-2"
+                    className="block py-2 px-4 text-gray-400 hover:bg-gray-700 rounded mb-2"
                   >
                     {t("purchase_history")}
                   </Link>
@@ -109,7 +130,7 @@ const History = () => {
                 <li>
                   <Link
                     to="/profile-settings"
-                    className="block py-2 px-4 text-gray-400 hover:bg-gray-700 rounded mb-2"
+                    className="block py-2 px-4 bg-blue-500 text-white rounded mb-2"
                   >
                     {t("profile_settings")}
                   </Link>
@@ -126,44 +147,43 @@ const History = () => {
         </div>
 
         <div className="flex-grow px-6 mt-6 md:mt-0">
-          <div className="bg-gray-800 p-6 rounded-lg">
-            <h2 className="text-xl font-semibold text-white mb-4">
-              {t("purchase_history")}
-            </h2>
-            {history &&
-              (history.length == 0 ? (
-                <p className="text-gray-400">{t("no_data_available")}</p>
-              ) : (
-                history.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="bg-gray-700 p-4 rounded-lg mb-4"
-                    >
-                      <p className="text-white font-semibold">
-                        {t("order_id")}: {item.id}
-                      </p>
-                      <p className="text-gray-400">
-                        {t("date")}:{" "}
-                        {new Date(item.created_at).toLocaleDateString()}
-                      </p>
-                      <p className="text-gray-400">
-                        {t("diamonds")}: {item.diamonds}
-                      </p>
-                      <p className="text-gray-400">
-                        {t("status")}:{" "}
-                        {item.status == 0 ? t("not_completed") : t("completed")}
-                      </p>
-                      <p className="text-gray-400">
-                        {t("server_id")}: {item.server_id}
-                      </p>
-                      <p className="text-gray-400">
-                        {t("user_id")}: {item.user_id}
-                      </p>
-                    </div>
-                  );
-                })
-              ))}
+          <div className="bg-gray-800 p-6 rounded-lg flex flex-col gap-[15px]">
+            <h1 className="text-[24px] font-medium">
+              {t("change_profile_pic")}
+            </h1>
+
+            <form onSubmit={handleSubmit}>
+              <label className="flex flex-col gap-[10px]">
+                <span>{t("change_profile_pic")}</span>
+                <div className="relative w-full max-w-xs">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="block w-full text-sm text-gray-300
+                                                                                file:mr-4 file:py-2 file:px-4
+                                                                                file:rounded-full file:border-0
+                                                                                file:text-sm file:font-semibold
+                                                                                file:bg-blue-600 file:text-white
+                                                                                hover:file:bg-blue-700
+                                                                                transition-colors duration-200
+                                                                                cursor-pointer
+                                                                        "
+                  />
+                </div>
+                {image && (
+                  <div className="mt-2">
+                    <span className="text-gray-400 text-sm">{image.name}</span>
+                  </div>
+                )}
+              </label>
+              <button
+                type="submit"
+                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+              >
+                {t("update")}
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -173,4 +193,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default ProfileSettings;
