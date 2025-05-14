@@ -41,6 +41,7 @@ const History = () => {
             },
           })
           .then((res) => {
+            console.log(res.data.orders);
             setHistory(res.data.orders);
           })
           .catch((err) => {
@@ -152,7 +153,15 @@ const History = () => {
                       </p>
                       <p className="text-gray-400">
                         {t("status")}:{" "}
-                        {item.status == 0 ? t("not_completed") : t("completed")}
+                        {item.status == 0 ? (
+                          <span className="text-red-500">
+                            {t("not_completed")}
+                          </span>
+                        ) : (
+                          <span className="text-green-500">
+                            {t(t("completed"))}
+                          </span>
+                        )}
                       </p>
                       <p className="text-gray-400">
                         {t("server_id")}: {item.server_id}

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import BASE_URL from "../config.js";
-import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import BASE_API from "../config.js";
@@ -10,12 +9,14 @@ export default function DiamondPackages() {
   const [standardPackages, setStandardPackages] = useState([]);
   const [additionalPackages, setAdditionalPackages] = useState([]);
   const [weekly, setWeekly] = useState();
-  const [username, setUsername] = useState(null);
-  const [serverId, setServerId] = useState(null);
+  const [username, setUsername] = useState("");
+  const [serverId, setServerId] = useState("");
   const [account, setAccount] = useState(null);
   const [choosedProducts, setChoosedProducts] = useState({});
   const [total, setTotal] = useState(0);
-  const [doesAgree, setDoesAgree] = useState(false);
+  const [doesAgree, setDoesAgree] = useState(true);
+  const [inpErr, setInpErr] = useState(false);
+  const [inpMsg, setInpMsg] = useState(false);
 
   const [standardQuantities, setStandardQuantities] = useState(
     Array(standardPackages.length).fill(0)
@@ -53,7 +54,7 @@ export default function DiamondPackages() {
           setAdditionalQuantities(Array(additional.length).fill(0));
         })
         .catch((err) => {
-          toast.error(t("error_fetching_data"));
+          setInpErr(t("error_fetching_data"));
         });
 
       const token = Cookies.get("token");
@@ -69,7 +70,7 @@ export default function DiamondPackages() {
             setUserBalance(res.data.balance);
           })
           .catch((err) => {
-            toast.error(t("error_fetching_user"));
+            setInpErr(t("error_fetching_user"));
           });
       }
     }
@@ -129,11 +130,19 @@ export default function DiamondPackages() {
         )
         .then((res) => {
           if (res.data.message) {
-            toast(res.data.message);
+            if (res.data.message == "ok") {
+              setChoosedProducts({});
+              setServerId("");
+              setUsername("");
+              setInpErr("");
+              setInpMsg(t("order_accepted"));
+            } else {
+            }
+            setInpMsg(res.data.message);
           }
         });
     } else {
-      toast.error(t("fill_profile_first"));
+      setInpErr(t("fill_profile_first"));
     }
   }
 
@@ -477,7 +486,6 @@ export default function DiamondPackages() {
                     className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:outline-none"
                     onChange={(e) => {
                       setUsername(e.target.value);
-                      // handleChange(e.target.value, serverId);
                     }}
                     onBlur={() => handleChange(username, serverId)}
                   />
@@ -492,7 +500,6 @@ export default function DiamondPackages() {
                     className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:outline-none"
                     onChange={(e) => {
                       setServerId(e.target.value);
-                      // handleChange(username, e.target.value);
                     }}
                     onBlur={() => handleChange(username, serverId)}
                   />
@@ -500,17 +507,10 @@ export default function DiamondPackages() {
 
                 <p>{account}</p>
               </div>
-              <p className="text-sm text-gray-300 mb-4">
-                <label className="flex items-start space-x-2 cursor-pointer text-sm text-white">
-                  <input
-                    type="checkbox"
-                    name="i_agree"
-                    className="mt-1 h-5 w-5 rounded-md border border-gray-600 bg-gray-800 checked:bg-blue-600 checked:border-transparent focus:ring-0 hover:border-blue-500 transition"
-                    onClick={() => setDoesAgree(!doesAgree)}
-                  />
-                  <span>{t("region_restrictions")}</span>
-                </label>
-              </p>
+
+              {setInpErr && <div className="text-red-500">{inpErr}</div>}
+              {setInpMsg && <div>{inpMsg}</div>}
+
               <div className="flex justify-between items-center">
                 <div>
                   <span className="text-sm">{t("balance")}: </span>

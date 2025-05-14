@@ -12,6 +12,7 @@
   "downloadButton": "Скачать",
   "register": "Регистрация",
   "login": "Войти",
+  "order_accepted": "Ваш заказ принят.",
   "username": "Имя пользователя",
   "email": "Электронная почта",
   "password": "Пароль",
