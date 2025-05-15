@@ -31,7 +31,7 @@
   "standard_packages": "Standart paketlar",
   "profile_settings": "Profil sozlamalari",
   "change_profile_pic": "Profil rasmini o'zgartirish",
-  "buy_now": "Balansni to'ldirish",
+  "buy_now": "Xarid qilish",
   "purchase_success": "Sotib olish muvaffaqiyatli amalga oshirildi!",
   "package_1": "Paket 1",
   "package_2": "Paket 2",
@@ -85,5 +85,5 @@
     "rights_reserved": "Barcha huquqlar himoyalangan."
   },
   "buy_again": "Yana sotib olish",
-  "check_order": "So'rovni tekshirish"
+  "check_order": "Haridni tekshirish"
 }

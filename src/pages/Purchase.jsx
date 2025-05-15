@@ -589,8 +589,6 @@ export default function DiamondPackages() {
                   onClick={() => setSuccessAlert(false)}
                 />
               </div>
-              {/* <div className="mt-[20px]">
-              </div> */}
 
               <div className="flex gap-3 mt-6 w-full">
                 <button
