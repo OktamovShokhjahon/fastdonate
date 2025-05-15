@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import BASE_API from "../config.js";
 import { XIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function DiamondPackages() {
   const [standardPackages, setStandardPackages] = useState([]);
@@ -19,7 +20,6 @@ export default function DiamondPackages() {
   const [inpErr, setInpErr] = useState(false);
   const [inpMsg, setInpMsg] = useState(false);
   const [successAlert, setSuccessAlert] = useState(false);
-
   const [standardQuantities, setStandardQuantities] = useState(
     Array(standardPackages.length).fill(0)
   );
@@ -28,6 +28,8 @@ export default function DiamondPackages() {
   );
   const [weeklyPassQuantityArray, setWeeklyPassQuantityArray] = useState([0]);
   const [userBalance, setUserBalance] = useState(undefined);
+
+  const navigate = useNavigate();
 
   const { t } = useTranslation();
 
@@ -579,15 +581,32 @@ export default function DiamondPackages() {
 
         {successAlert && (
           <div className="w-full h-[100vh] backdrop-blur-lg bg-[rgba(0,0,0,0.21)] bg-opacity-[0.8] fixed left-0 top-0 flex justify-center items-center">
-            <div className="bg-gray-800 flex-col px-[15px] py-[20px] rounded-[10px] flex items-end z-50">
-              <div className=" mb-[10px] flex justify-end">
+            <div className="bg-gray-800 flex-col px-[25px] py-[20px] rounded-[10px] flex  z-50">
+              <div className="mb-[10px] flex justify-between items-center">
+                <h2 className="text-[20px]">{t("order_accepted")} ✅</h2>
                 <XIcon
                   className="cursor-pointer"
                   onClick={() => setSuccessAlert(false)}
                 />
               </div>
-              <div className="mt-[20px]">
-                <h2 className="text-[28px]">{t("order_accepted")} ✅</h2>
+              {/* <div className="mt-[20px]">
+              </div> */}
+
+              <div className="flex gap-3 mt-6 w-full">
+                <button
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition font-semibold"
+                  onClick={() => setSuccessAlert(false)}
+                >
+                  {t("buy_again")}
+                </button>
+                <button
+                  className="w-full bg-gray-700 hover:bg-gray-600 text-white text-sm px-4 py-2 rounded-lg transition font-semibold"
+                  onClick={() => {
+                    navigate("/history");
+                  }}
+                >
+                  {t("check_order")}
+                </button>
               </div>
             </div>
           </div>

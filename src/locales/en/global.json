@@ -83,5 +83,7 @@
   "status": "Status",
   "not_completed": "Not Completed",
   "completed": "Completed",
-  "user_id": "User ID"
+  "user_id": "User ID",
+  "buy_again": "Buy Again",
+  "check_order": "Check Order"
 }
