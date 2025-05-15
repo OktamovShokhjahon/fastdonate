@@ -4,6 +4,7 @@ import BASE_URL from "../config.js";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import BASE_API from "../config.js";
+import { XIcon } from "lucide-react";
 
 export default function DiamondPackages() {
   const [standardPackages, setStandardPackages] = useState([]);
@@ -17,6 +18,7 @@ export default function DiamondPackages() {
   const [doesAgree, setDoesAgree] = useState(true);
   const [inpErr, setInpErr] = useState(false);
   const [inpMsg, setInpMsg] = useState(false);
+  const [successAlert, setSuccessAlert] = useState(false);
 
   const [standardQuantities, setStandardQuantities] = useState(
     Array(standardPackages.length).fill(0)
@@ -139,8 +141,9 @@ export default function DiamondPackages() {
               setStandardQuantities(Array(standardPackages.length).fill(0));
               setAdditionalQuantities(Array(additionalPackages.length).fill(0));
               setWeeklyPassQuantityArray([0]);
-              setInpMsg(t("order_accepted"));
+              // setInpMsg(t("order_accepted"));
               setTotal(0);
+              setSuccessAlert(true);
 
               const token = Cookies.get("token");
 
@@ -225,9 +228,7 @@ export default function DiamondPackages() {
           </ul>
         </div>
 
-        {/* Right Column: All Packages */}
         <div className="space-y-8">
-          {/* Standard Packages Section */}
           <div>
             <h3 className="text-xl font-semibold mb-4">
               {t("standard_packages")}
@@ -317,7 +318,6 @@ export default function DiamondPackages() {
             </div>
           </div>
 
-          {/* Additional Packages Section */}
           <div>
             <h3 className="text-xl font-semibold mb-4">
               {t("additional_packages")}
@@ -421,7 +421,6 @@ export default function DiamondPackages() {
             </div>
           </div>
 
-          {/* Special Packages Section */}
           {weekly && (
             <div>
               <h3 className="text-xl font-semibold mb-4">
@@ -577,6 +576,22 @@ export default function DiamondPackages() {
             </div>
           </div>
         </div>
+
+        {successAlert && (
+          <div className="w-full h-[100vh] backdrop-blur-lg bg-[rgba(0,0,0,0.21)] bg-opacity-[0.8] fixed left-0 top-0 flex justify-center items-center">
+            <div className="bg-gray-800 flex-col px-[15px] py-[20px] rounded-[10px] flex items-end z-50">
+              <div className=" mb-[10px] flex justify-end">
+                <XIcon
+                  className="cursor-pointer"
+                  onClick={() => setSuccessAlert(false)}
+                />
+              </div>
+              <div className="mt-[20px]">
+                <h2 className="text-[28px]">{t("order_accepted")} ✅</h2>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
