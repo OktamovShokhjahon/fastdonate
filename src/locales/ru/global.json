@@ -13,7 +13,7 @@
   "register": "Регистрация",
   "login": "Войти",
   "order_accepted": "Ваш заказ принят.",
-  "username": "Имя пользователя",
+  "username": "User ID",
   "email": "Электронная почта",
   "password": "Пароль",
   "enter_your_username": "Введите ваше имя пользователя",
