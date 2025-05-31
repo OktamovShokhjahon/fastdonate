@@ -505,11 +505,11 @@ export default function DiamondPackages() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    {t("username")}
+                    User ID
                   </label>
                   <input
                     type="text"
-                    placeholder={t("enter_your_username")}
+                    placeholder={"User ID"}
                     className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:outline-none"
                     value={username}
                     onChange={(e) => {
@@ -520,11 +520,12 @@ export default function DiamondPackages() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    {t("server_id")}
+                    Server ID
                   </label>
+                  
                   <input
                     type="text"
-                    placeholder={t("enter_your_server_id")}
+                    placeholder="Server ID"
                     className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:outline-none"
                     value={serverId}
                     onChange={(e) => {
